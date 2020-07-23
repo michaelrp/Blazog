@@ -1,0 +1,2 @@
+# Blazog
+Static Blazor blog
