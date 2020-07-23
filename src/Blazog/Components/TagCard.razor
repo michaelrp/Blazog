@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><NavLink href="@($"/tag/{Info.Title}")" title="@(Info.Title)">@Info.Title</NavLink></h5>
+        <p class="card-text">@Info.About</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public TagInfo Info { get; set; }
+}

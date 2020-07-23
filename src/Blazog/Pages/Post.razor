@@ -1,0 +1,20 @@
+@inject IPostService PostService
+
+@page "/post/{label}"
+
+<h1>Post Page</h1>
+
+<PostContent>@((MarkupString)html)</PostContent>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+
+    private string html { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        html = await PostService.GetPostAsync(Label);
+        StateHasChanged();
+    }
+}

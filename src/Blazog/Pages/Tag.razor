@@ -1,0 +1,36 @@
+@using System.Linq
+@inject IPostService PostService
+
+@page "/tag/{title}";
+
+<h1>@tagInfo.Title</h1>
+
+@if(postInfos.Count() == 0)
+{
+    <div>No posts.</div>
+}
+
+@foreach (var postInfo in postInfos)
+{
+    <PostCard Info="@postInfo"></PostCard>    
+}
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    private TagInfo tagInfo;
+    private IEnumerable<PostInfo> postInfos;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Console.WriteLine($"Title {Title}");
+        
+        // TODO: Get all this in one call, also include paging
+        var tagInfos = await PostService.GetTagsAsync();
+        tagInfo = tagInfos.FirstOrDefault(t => t.Title == Title);
+
+        postInfos = await PostService.GetTagAsync(Title);
+
+        Console.WriteLine($"tagInfo {tagInfo.Title}");
+    }
+}
