@@ -1,0 +1,27 @@
+@inject IPostService PostService
+
+<h1>Posts</h1>
+<hr />
+
+@if(postInfos.Count() == 0)
+{
+    <div>No posts.</div>
+}
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var postInfo in postInfos)
+    {
+        <PostCard Info="@postInfo"></PostCard>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Page { get; set; }
+    private IEnumerable<PostInfo> postInfos;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        postInfos = await PostService.GetPostsAsync(Page);
+    }
+}

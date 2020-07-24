@@ -1,9 +1,8 @@
 @using System.Linq
 @inject IPostService PostService
+@inject NavigationManager NavigationManager
 
-@page "/tag/{title}";
-
-<h1>@tagInfo.Title</h1>
+<h2><span class="badge badge-secondary">@Title</span></h2>
 
 @if(postInfos.Count() == 0)
 {
@@ -25,6 +24,11 @@
 
     protected override async Task OnParametersSetAsync()
     {
+        if(string.IsNullOrEmpty(Title))
+        {
+            NavigationManager.NavigateTo("/tags");
+        }
+        
         // TODO: Get all this in one call, also include paging
         var tagInfos = await PostService.GetTagsAsync();
         tagInfo = tagInfos.FirstOrDefault(t => t.Title == Title);

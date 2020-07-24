@@ -1,15 +1,12 @@
 @inject IPostService PostService
 @inject NavigationManager NavigationManager
 
-@page "/post"
-@page "/post/{label}"
-
 <h2>@postInfo.Title</h2>
 
 <PostContent>@((MarkupString)postInfo.Html)</PostContent>
 
-<NavLink href="@($"/post/{postInfo.PreviousLabel}")"><span class="oi oi-chevron-left"></span> Previous</NavLink>
-<NavLink href="@($"/post/{postInfo.NextLabel}")">Next <span class="oi oi-chevron-right"></span></NavLink>
+<NavLink href="@($"/posts/{postInfo.PreviousLabel}")"><span class="oi oi-chevron-left"></span> Previous</NavLink>
+<NavLink href="@($"/posts/{postInfo.NextLabel}")">Next <span class="oi oi-chevron-right"></span></NavLink>
 
 @code {
     [Parameter]

@@ -4,10 +4,10 @@
             <p>
             @foreach (var tag in Info.Tags)
             {
-                <NavLink class="badge badge-secondary" href="@($"/tag/{tag}")">@tag</NavLink>
+                <NavLink class="badge badge-secondary" href="@($"/tags/{tag}")">@tag</NavLink>
             }
             </p>
-            <h2 class="card-title"><NavLink class="text-reset" href="@($"/post/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
+            <h2 class="card-title"><NavLink class="text-reset" href="@($"/posts/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
             <p class="card-text">@Info.Blurb</p>
         </div>
     </div>

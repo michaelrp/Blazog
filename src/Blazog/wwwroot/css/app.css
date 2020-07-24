@@ -67,13 +67,12 @@ app {
 
     .sidebar .nav-item {
         font-size: 1.1rem;
-        border-left: 5px solid #1e555c;
         /* padding-bottom: 0.5rem; */
     }
 
-        .sidebar .nav-item:first-of-type {
-            /* padding-top: 1rem; */
-        }
+        /* .sidebar .nav-item:first-of-type {
+            padding-top: 1rem;
+        } */
 
         .sidebar .nav-item:last-of-type {
             padding-bottom: 1rem;
@@ -86,17 +85,19 @@ app {
             display: flex;
             align-items: center;
             line-height: 3rem;
+            border-left: 10px solid #1e555c;
         }
 
             .sidebar .nav-item a.active {
                 /* background-color: rgba(255, 255, 255, 0.15); */
                 color: white;
-                border-left-color: #fff;
+                border-left: 10px solid #fff;
             }
 
             .sidebar .nav-item a:hover {
-                background-color: rgba(255,255,255,0.1);
+                /* background-color: rgba(255,255,255,0.1); */
                 color: white;
+                text-decoration-line: underline;
             }
 
 .content {

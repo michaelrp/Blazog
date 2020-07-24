@@ -49,7 +49,7 @@ namespace Blazog.Services
                     Title = "Second Post",
                     Label = "second-post",
                     Blurb = "This is the second post",
-                    Tags = new string[] {},
+                    Tags = new string[] { "About", "Blazor" },
                     PreviousTitle = "First Post",
                     PreviousLabel = "first-post",
                     NextTitle = "Third Post",
