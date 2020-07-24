@@ -1,12 +1,22 @@
 @inject IPostService PostService
 @inject NavigationManager NavigationManager
 
-<h2>@postInfo.Title</h2>
+<h1>@postInfo.Title</h1>
+<p><TagLinks Tags="@postInfo.Tags"></TagLinks></p>
+<hr />
 
 <PostContent>@((MarkupString)postInfo.Html)</PostContent>
 
-<NavLink href="@($"/posts/{postInfo.PreviousLabel}")"><span class="oi oi-chevron-left"></span> Previous</NavLink>
-<NavLink href="@($"/posts/{postInfo.NextLabel}")">Next <span class="oi oi-chevron-right"></span></NavLink>
+<div class="d-flex justify-content-center mt-4">
+    <NavLink class="btn btn-outline-secondary mr-3" href="@($"/posts/{postInfo.PreviousLabel}")"
+        title="@postInfo.PreviousTitle" Match="NavLinkMatch.All">
+        <span class="oi oi-chevron-left"></span> Previous
+    </NavLink>
+    <NavLink class="btn btn-outline-secondary ml-3" href="@($"/posts/{postInfo.NextLabel}")"
+        title="@postInfo.NextTitle" Match="NavLinkMatch.All">
+        Next <span class="oi oi-chevron-right"></span>
+    </NavLink>
+</div>
 
 @code {
     [Parameter]

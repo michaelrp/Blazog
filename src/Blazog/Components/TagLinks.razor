@@ -1,0 +1,9 @@
+@foreach (var tag in Tags)
+{
+    <NavLink class="badge badge-secondary" href="@($"/tags/{tag}")">@tag</NavLink>
+}
+
+@code {
+    [Parameter]
+    public string[] Tags { get; set; }
+}
