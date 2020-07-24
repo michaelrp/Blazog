@@ -13,9 +13,12 @@ namespace Blazog.Services
             return posts;
         }
 
-        public async Task<string> GetPostAsync(string label)
+        public async Task<PostInfo> GetPostAsync(string label)
         {
-            var post = await LoadPostAsync(label);
+            var post = (await LoadPostInfosAsync()).First(p => p.Label == label);
+
+            post.Html = await LoadPostAsync(label);
+
             return post;
         }
 
@@ -34,36 +37,52 @@ namespace Blazog.Services
         private async Task<IEnumerable<PostInfo>> LoadPostInfosAsync()
         {
             var posts = new List<PostInfo> {
-                new PostInfo { 
-                    Title = "First Post", 
-                    Label = "first-post", 
+                new PostInfo {
+                    Title = "First Post",
+                    Label = "first-post",
                     Blurb = "This is the first post",
-                    Tags = new string[] { "About", "Housekeeping" }
+                    Tags = new string[] { "About", "Housekeeping" },
+                    NextTitle = "Second Post",
+                    NextLabel = "second-post"
                 },
                 new PostInfo {
                     Title = "Second Post",
                     Label = "second-post",
                     Blurb = "This is the second post",
-                    Tags = new string[] {}
+                    Tags = new string[] {},
+                    PreviousTitle = "First Post",
+                    PreviousLabel = "first-post",
+                    NextTitle = "Third Post",
+                    NextLabel = "third-post"
+                },
+                new PostInfo {
+                    Title = "Third Post",
+                    Label = "third-post",
+                    Blurb = "This is the third post",
+                    Tags = new string[] { "Blazor" },
+                    PreviousTitle = "Second Post",
+                    PreviousLabel = "second-post"
                 }
+
             };
 
-            return await Task.FromResult(posts); 
+            return await Task.FromResult(posts);
         }
 
         private async Task<string> LoadPostAsync(string label)
         {
             var content = "Post not found";
 
-            switch(label)
+            switch (label)
             {
                 case "first-post":
-                    content = @"<h2>First Post</h2>
-                                <div>Hello, First Post!</div>";
+                    content = @"<div>Hello, First Post!</div>";
                     break;
                 case "second-post":
-                    content = @"<h2>Second Post</h2>
-                                <div>Yeah, I know it. I'm the second post.</div>";
+                    content = @"<div>Yeah, I know it. I'm the second post.</div>";
+                    break;
+                case "third-post":
+                    content = @"<div>I'm the third post.</div>";
                     break;
             }
 
@@ -73,17 +92,17 @@ namespace Blazog.Services
         private async Task<IEnumerable<TagInfo>> LoadTagsAsync()
         {
             var tags = new List<TagInfo> {
-                new TagInfo { 
+                new TagInfo {
                     Title = "About",
                     PostCount = 1,
                     About = "Info about the site"
                 },
-                new TagInfo { 
+                new TagInfo {
                     Title = "Housekeeping",
                     PostCount = 1,
                     About = "Posts on general housekeeping"
                 },
-                new TagInfo { 
+                new TagInfo {
                     Title = "Blazor",
                     PostCount = 0,
                     About = "Blazor web development"
@@ -96,7 +115,7 @@ namespace Blazog.Services
         private async Task<IEnumerable<PostInfo>> LoadTagAsync(string tag)
         {
             var posts = (await LoadPostInfosAsync()).Where(p => p.Tags.Contains(tag));
-            return posts; 
+            return posts;
         }
     }
 }

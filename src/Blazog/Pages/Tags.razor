@@ -9,15 +9,17 @@
     <div>No tags.</div>
 }
 
-@foreach (var tagInfo in tagInfos)
-{
-    <TagCard Info="@tagInfo"></TagCard>
-}
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var tagInfo in tagInfos)
+    {
+        <TagCard Info="@tagInfo"></TagCard>
+    }
+</div>
 
 @code {
     private IEnumerable<TagInfo> tagInfos;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
        tagInfos = await PostService.GetTagsAsync();
     }

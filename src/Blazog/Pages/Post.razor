@@ -1,20 +1,31 @@
 @inject IPostService PostService
+@inject NavigationManager NavigationManager
 
+@page "/post"
 @page "/post/{label}"
 
 <h1>Post Page</h1>
 
-<PostContent>@((MarkupString)html)</PostContent>
+<h2>@postInfo.Title</h2>
+
+<PostContent>@((MarkupString)postInfo.Html)</PostContent>
+
+<NavLink href="@($"/post/{postInfo.PreviousLabel}")"><span class="oi oi-chevron-left"></span> Previous</NavLink>
+<NavLink href="@($"/post/{postInfo.NextLabel}")">Next <span class="oi oi-chevron-right"></span></NavLink>
 
 @code {
     [Parameter]
     public string Label { get; set; }
-
+    public PostInfo postInfo { get; set; }
     private string html { get; set; }
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        html = await PostService.GetPostAsync(Label);
-        StateHasChanged();
+        if(string.IsNullOrEmpty(Label))
+        {
+            NavigationManager.NavigateTo("/posts");
+        }
+
+        postInfo = await PostService.GetPostAsync(Label);
     }
 }

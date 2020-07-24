@@ -1,22 +1,17 @@
-@inject NavigationManager NavigationManager
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title"><NavLink href="@($"/post/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h5>
-        @foreach (var tag in Info.Tags)
-        {
-            <span class="badge badge-info"><NavLink href="@($"/tag/{tag}")">@tag</NavLink></span>
-        }
-        <p class="card-text">@Info.Blurb</p>
+<div class="col mb-4">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title"><NavLink href="@($"/post/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h5>
+            @foreach (var tag in Info.Tags)
+            {
+                <span class="badge badge-info"><NavLink href="@($"/tag/{tag}")">@tag</NavLink></span>
+            }
+            <p class="card-text">@Info.Blurb</p>
+        </div>
     </div>
 </div>
 
 @code {
     [Parameter]
     public PostInfo Info { get; set; }
-
-    private void NavigateToTag(string tag)
-    {
-        NavigationManager.NavigateTo($"/tag/{tag}");
-    }
 }
