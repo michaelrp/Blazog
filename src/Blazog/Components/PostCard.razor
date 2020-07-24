@@ -1,11 +1,13 @@
 <div class="col mb-4">
     <div class="card h-100">
         <div class="card-body">
-            <h5 class="card-title"><NavLink class="text-reset" href="@($"/post/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h5>
+            <p>
             @foreach (var tag in Info.Tags)
             {
-                <NavLink class="badge badge-info" href="@($"/tag/{tag}")">@tag</NavLink>
+                <NavLink class="badge badge-secondary" href="@($"/tag/{tag}")">@tag</NavLink>
             }
+            </p>
+            <h2 class="card-title"><NavLink class="text-reset" href="@($"/post/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
             <p class="card-text">@Info.Blurb</p>
         </div>
     </div>
