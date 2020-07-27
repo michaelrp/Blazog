@@ -12,6 +12,7 @@ namespace Blazog.Services
         private ILogger<DataLoader> logger;
         private HttpClient http;
         private ILocalStorage store;
+        private string rootUrl;
 
         public DataLoader(ILogger<DataLoader> logger,
             HttpClient http, 
@@ -27,9 +28,24 @@ namespace Blazog.Services
             logger.LogDebug("Initialize");
 
             var appConfig = await LoadAppConfig();
-            await LoadPostInfos(appConfig.RootUrl);
-            await LoadTagInfos(appConfig.RootUrl);
+            rootUrl = appConfig.RootUrl;
+
+            await LoadPostInfos();
+            await LoadTagInfos();
             // await LoadOther(appConfig.RootUrl);
+        }
+
+        public async Task<PostDoc> LoadPost(string label)
+        {
+            logger.LogDebug($"LoadPost, label {label}");
+
+            var url = $"{rootUrl}/posts/{label}.json";
+            var result = await http.GetStringAsync(url);
+            var postDoc = JsonSerializer.Deserialize<PostDoc>(result);
+
+            await store.SavePostDocAsync(label, postDoc);
+
+            return postDoc;
         }
 
         private async Task<AppConfig> LoadAppConfig()
@@ -44,7 +60,7 @@ namespace Blazog.Services
             return appConfig;
         }
 
-        private async Task LoadPostInfos(string rootUrl)
+        private async Task LoadPostInfos()
         {
             logger.LogDebug("LoadPostInfos");
 
@@ -53,7 +69,7 @@ namespace Blazog.Services
             await store.SavePostInfosAsnyc(postInfos);
         }
 
-        private async Task LoadTagInfos(string rootUrl)
+        private async Task LoadTagInfos()
         {
             logger.LogDebug("LoadTaskInfos");
 
@@ -62,7 +78,7 @@ namespace Blazog.Services
             await store.SaveTagInfosAsync(tagInfos);
         }
 
-        private async Task LoadOther(string rootUrl)
+        private async Task LoadOther()
         {
             logger.LogDebug("LoadOther");
 
