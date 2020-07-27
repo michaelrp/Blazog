@@ -1,0 +1,1 @@
+ConvertFrom-Markdown -Path .\file.md | Select-Object -ExpandProperty Html | tobase64 | Out-File .\file.txt
