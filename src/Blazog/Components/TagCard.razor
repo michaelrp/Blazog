@@ -2,7 +2,7 @@
     <div class="card w-100">
         <div class="card-body">
             <h4 class="card-title"><NavLink class="badge badge-secondary" href="@($"/tags/{Info.Title}")" title="@(Info.Title)">@Info.Title</NavLink></h4>
-            <p class="card-text">@Info.About</p>
+            <p class="card-text">@Info.PostCount @(Info.PostCount > 1 ? "Posts" : "Post")</p>
         </div>
     </div>
 </div>

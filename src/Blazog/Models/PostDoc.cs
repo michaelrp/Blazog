@@ -5,29 +5,21 @@ namespace Blazog.Models
 {
     public class PostDoc
     {
-        private string mainHtml;
-        private string sideHtml;
+        private string html;
 
         public string Label { get; set; }
-        public string MainContent { get; set; }
-        public string SideContent { get; set; }
+        public string Tags { get; set; }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
 
-        public string GetMainContentHtml()
+        public string GetContentHtml()
         {
-            if(mainHtml == null)
+            if(html == null)
             {
-                mainHtml = DecodeBase64(MainContent);
+                html = DecodeBase64(Content);
             }
-            return mainHtml;
-        }
-
-        public string GetSideContentHtml()
-        {
-            if(sideHtml == null)
-            {
-                return sideHtml = DecodeBase64(SideContent);
-            }
-            return sideHtml;
+            return html;
         }
 
         private string DecodeBase64(string base64Content)

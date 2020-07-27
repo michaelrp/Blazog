@@ -4,6 +4,5 @@ namespace Blazog.Models
     {
         public string Title { get; set; }
         public int PostCount { get; set; }
-        public string About { get; set; }
     }
 }
