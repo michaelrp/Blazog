@@ -1,7 +1,11 @@
 {
   "Index": 1,
   "Label": "test-post",
-  "Tags": "SQL,Blazog,PowerShell",
+  "Tags": [
+    "SQL",
+    "Blazog",
+    "PowerShell"
+  ],
   "Title": "This is the first post",
   "Date": "7/27/2020 2:12 PM",
   "Content": "PGgxIGlkPSJ0aGlzLWlzLXRoZS1maXJzdC10ZXN0LXBvc3QiPlRoaXMgaXMgdGhlIGZpcnN0IHRlc3QgcG9zdDwvaDE+CjxwPkEgdGVzdCBwb3N0PC9wPgo="
