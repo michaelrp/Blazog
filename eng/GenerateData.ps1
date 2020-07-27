@@ -41,10 +41,17 @@ $tagHash = @{}
 $postJsonFiles = Get-ChildItem "$($dataDir)\posts\*.json"
 foreach ($file in $postJsonFiles)
 {
-    $post = Get-Content -Raw -Path $file | ConvertFrom-Json
-    $r = $posts.Add($post)
+    $postWithContent = Get-Content -Raw -Path $file | ConvertFrom-Json
+    $indexPost = $postWithContent |
+        Select-Object @{ Name = "Index"; Expression={$postWithContent.Index} }, `
+        @{n='Label';e={$postWithContent.Label}}, `
+        @{n='Tags';e={$postWithContent.Tags}}, `
+        @{n='Title';e={$postWithContent.Title}}, `
+        @{n='Date';e={$postWithContent.Date}}
 
-    $postTags = $post.Tags.Split(',')
+    $r = $posts.Add($indexPost)
+
+    $postTags = $postWithContent.Tags.Split(',')
     foreach ($tag in $postTags) {
         $tagHash[$tag] += 1
     }

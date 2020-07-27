@@ -64,7 +64,7 @@ namespace Blazog.Services
         {
             logger.LogDebug("LoadPostInfos");
 
-            var result = await http.GetStringAsync($"{rootUrl}/posts/posts.json");
+            var result = await http.GetStringAsync($"{rootUrl}/indexes/posts.json");
             var postInfos = JsonSerializer.Deserialize<IEnumerable<PostInfo>>(result);
             await store.SavePostInfosAsnyc(postInfos);
         }
@@ -73,7 +73,7 @@ namespace Blazog.Services
         {
             logger.LogDebug("LoadTaskInfos");
 
-            var result = await http.GetStringAsync($"{rootUrl}/tags/tags.json");
+            var result = await http.GetStringAsync($"{rootUrl}/indexes/tags.json");
             var tagInfos = JsonSerializer.Deserialize<IEnumerable<TagInfo>>(result);
             await store.SaveTagInfosAsync(tagInfos);
         }

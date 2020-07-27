@@ -7,6 +7,7 @@ namespace Blazog.Models
     {
         private string html;
 
+        private int Index { get; set; }
         public string Label { get; set; }
         public string Tags { get; set; }
         public string Title { get; set; }

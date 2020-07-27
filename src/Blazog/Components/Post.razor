@@ -9,7 +9,7 @@
 
 <PostContent>@((MarkupString)html)</PostContent>
 
-<div class="d-flex justify-content-center mt-4">
+@* <div class="d-flex justify-content-center mt-4">
     <NavLink class="btn btn-outline-secondary mr-3" href="@($"/posts/{postInfo.PreviousLabel}")"
         title="@postInfo.PreviousTitle" Match="NavLinkMatch.All">
         <span class="oi oi-chevron-left"></span> Previous
@@ -18,7 +18,7 @@
         title="@postInfo.NextTitle" Match="NavLinkMatch.All">
         Next <span class="oi oi-chevron-right"></span>
     </NavLink>
-</div>
+</div> *@
 
 @code {
     [Parameter]
@@ -31,11 +31,7 @@
     {
         postInfo = new PostInfo {
             Title = "",
-            Tags = new string[] {},
-            PreviousLabel = "",
-            PreviousTitle = "",
-            NextLabel = "",
-            NextTitle = ""
+            Tags = new string[] {}
         };
     }
 
