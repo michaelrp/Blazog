@@ -1,6 +1,13 @@
 [
   {
     "Index": 0,
+    "Label": "brand-new-post",
+    "Tags": "PowerShell",
+    "Title": "Brand New Post",
+    "Date": "7/27/2020 6:12 PM"
+  },
+  {
+    "Index": 1,
     "Label": "second-test-post",
     "Tags": [
       "Blazog",
@@ -10,7 +17,7 @@
     "Date": "7/27/2020 2:15 PM"
   },
   {
-    "Index": 1,
+    "Index": 2,
     "Label": "test-post",
     "Tags": [
       "SQL",
@@ -21,7 +28,7 @@
     "Date": "7/27/2020 2:12 PM"
   },
   {
-    "Index": 2,
+    "Index": 3,
     "Label": "third-post-is-the-charm",
     "Tags": [
       "PowerShell",
