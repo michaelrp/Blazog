@@ -18,11 +18,17 @@ namespace Blazog
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddSingleton<IPostService, PostService>();
+            builder.Services.AddScoped<IDataLoader, DataLoader>();
+            builder.Services.AddSingleton<ILocalStorage, LocalStorage>();
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            var dataLoader = host.Services.GetRequiredService<IDataLoader>();
+            await dataLoader.InitializeBlazogAppAsync();
+
+            await host.RunAsync();
         }
     }
 }

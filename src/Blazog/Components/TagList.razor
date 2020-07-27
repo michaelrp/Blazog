@@ -1,24 +1,31 @@
-@inject IPostService PostService
+@inject ILocalStorage Store
 
-@if(tagInfos.Count() == 0)
+@if(tagInfos == null || tagInfos.Count() == 0)
 {
     <div>No tags.</div>
 }
-
-<div class="row row-cols-1 row-cols-md-3">
-    @foreach (var tagInfo in tagInfos)
-    {
-        <TagCard Info="@tagInfo"></TagCard>
-    }
-</div>
+else
+{
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var tagInfo in tagInfos)
+        {
+            <TagCard Info="@tagInfo"></TagCard>
+        }
+    </div>
+}
 
 @code {
     [Parameter]
     public string Title { get; set; }
     private IEnumerable<TagInfo> tagInfos;
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnInitializedAsync()
     {
-       tagInfos = await PostService.GetTagsAsync();
+        tagInfos = await Store.GetTagInfosAsync(); 
     }
+
+    // protected override async Task OnParametersSetAsync()
+    // {
+    //     tagInfos = await PostService.GetTagsAsync();
+    // }
 }

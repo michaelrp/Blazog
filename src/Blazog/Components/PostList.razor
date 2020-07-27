@@ -1,24 +1,47 @@
-@inject IPostService PostService
+@inject HttpClient Http
+@inject ILocalStorage Store
 
-@if(postInfos.Count() == 0)
+@if(displayPostInfos == null || displayPostInfos.Count() == 0)
 {
     <div>No posts.</div>
 }
-
-<div class="row row-cols-1 row-cols-md-3">
-    @foreach (var postInfo in postInfos)
-    {
-        <PostCard Info="@postInfo"></PostCard>
-    }
-</div>
+else
+{
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var postInfo in displayPostInfos)
+        {
+            <PostCard Info="@postInfo"></PostCard>
+        }
+    </div>
+}
 
 @code {
     [Parameter]
     public int Page { get; set; }
+    [Parameter]
+    public string Tag { get; set; }
     private IEnumerable<PostInfo> postInfos;
+    private IEnumerable<PostInfo> displayPostInfos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        postInfos = await Store.GetPostInfosAsync();
+    }
 
     protected override async Task OnParametersSetAsync()
     {
-        postInfos = await PostService.GetPostsAsync(Page);
+        IEnumerable<PostInfo> infos;
+
+        // TODO: Implement paging
+        if(!string.IsNullOrEmpty(Tag))
+        {
+            infos = postInfos.Where(p => p.Tags.Contains(Tag));
+        }
+        else
+        {
+            infos = postInfos;
+        }
+
+        displayPostInfos = await Task.FromResult(infos);
     }
 }

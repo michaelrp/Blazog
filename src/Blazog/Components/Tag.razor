@@ -1,26 +1,15 @@
 @using System.Linq
-@inject IPostService PostService
+@inject ILocalStorage Store
 @inject NavigationManager NavigationManager
 
 <h2><span class="badge badge-secondary">@Title</span></h2>
 
-@if(postInfos.Count() == 0)
-{
-    <div>No posts.</div>
-}
-
-<div class="row row-cols-1 row-cols-md-3">
-    @foreach (var postInfo in postInfos)
-    {
-        <PostCard Info="@postInfo"></PostCard>    
-    }
-</div>
+<PostList Tag="@Title"></PostList>
 
 @code {
     [Parameter]
     public string Title { get; set; }
     private TagInfo tagInfo;
-    private IEnumerable<PostInfo> postInfos;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -29,10 +18,6 @@
             NavigationManager.NavigateTo("/tags");
         }
         
-        // TODO: Get all this in one call, also include paging
-        var tagInfos = await PostService.GetTagsAsync();
-        tagInfo = tagInfos.FirstOrDefault(t => t.Title == Title);
-
-        postInfos = await PostService.GetTagAsync(Title);
+        tagInfo = (await Store.GetTagInfosAsync()).FirstOrDefault(t => t.Title == Title);
     }
 }

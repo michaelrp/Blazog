@@ -1,11 +1,12 @@
-@inject IPostService PostService
+@inject HttpClient Http;
+@inject ILocalStorage Store
 @inject NavigationManager NavigationManager
 
 <h1>@postInfo.Title</h1>
 <p><TagLinks Tags="@postInfo.Tags"></TagLinks></p>
 <hr />
 
-<PostContent>@((MarkupString)postInfo.Html)</PostContent>
+<PostContent>@((MarkupString)html)</PostContent>
 
 <div class="d-flex justify-content-center mt-4">
     <NavLink class="btn btn-outline-secondary mr-3" href="@($"/posts/{postInfo.PreviousLabel}")"
@@ -21,8 +22,21 @@
 @code {
     [Parameter]
     public string Label { get; set; }
-    public PostInfo postInfo { get; set; }
-    private string html { get; set; }
+    private PostInfo postInfo;
+    private PostDoc postDoc;
+    private string html = "<div>Loading...</div>";
+
+    protected override void OnInitialized()
+    {
+        postInfo = new PostInfo {
+            Title = "",
+            Tags = new string[] {},
+            PreviousLabel = "",
+            PreviousTitle = "",
+            NextLabel = "",
+            NextTitle = ""
+        };
+    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -31,6 +45,19 @@
             NavigationManager.NavigateTo("/posts");
         }
 
-        postInfo = await PostService.GetPostAsync(Label);
+        postInfo = (await Store.GetPostInfosAsync()).FirstOrDefault(p => p.Label == Label);
+        postDoc = await Store.GetPostDocAsync(Label);
+
+        if(postDoc == null)
+        {
+            var rootUrl = (await Store.GetAppConfigAsync()).RootUrl;
+            var url = $"{rootUrl}/posts/{Label}.json";
+
+            postDoc = await Http.GetFromJsonAsync<PostDoc>(url);
+
+            await Store.SavePostDocAsync(Label, postDoc);
+        }
+
+        html = postDoc.GetMainContentHtml();
     }
 }
