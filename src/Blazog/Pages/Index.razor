@@ -1,9 +1,20 @@
-﻿@page "/"
+﻿@inject ILocalStorage Store
+
+@page "/"
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Hello, Blazog!</h1>
-    <p class="lead">A static blog running in Blazor with pages pulled from GitHub.</p>
+    <h1 class="display-4">Hello, @title!</h1>
+    <p class="lead">A static blog running in Blazor with posts pulled from GitHub*</p>
+    <p><small>*Or from whatever source you want</small></p>
   </div>
 </div>
 <PostList Page="1"></PostList>
+
+@code {
+  private string title = "";
+  protected override async Task OnInitializedAsync()
+  {
+    title = (await Store.GetAppConfigAsync()).Title;
+  }
+}
