@@ -3,7 +3,7 @@
     "Index": 0,
     "Label": "brand-new-post",
     "Tags": "PowerShell",
-    "Title": "Brand New Post",
+    "Title": [ "Brand New Post" ],
     "Date": "7/27/2020 6:12 PM"
   },
   {
