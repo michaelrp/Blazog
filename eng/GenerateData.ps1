@@ -19,16 +19,16 @@ foreach ($file in $postMdFiles)
 
     $label = $file | Select-Object -ExpandProperty BaseName
     $content = Get-Content $file | Select-Object -Skip 3 | Out-String
-    $mainHtml = ConvertFrom-Markdown -InputObject $content | Select-Object -ExpandProperty Html
-    $mainContent = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($mainHtml))
-    $post = Select-Object `
-        @{ Name = "Index"; Expression={$index} }, `
-        @{n='Label';e={$label}}, `
-        @{n='Tags';e={$postTags}}, `
-        @{n='Title';e={$title}}, `
-        @{n='Date';e={$date}}, `
-        @{n='Content';e={$mainContent}} `
-        -InputObject ''
+    $html = ConvertFrom-Markdown -InputObject $content | Select-Object -ExpandProperty Html
+    $content = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($html))
+    $post = [PSCustomObject]@{
+        "Index" = $index
+        "Label" = $label
+        "Tags" = @($postTags)
+        "Title" = $title
+        "Date" = $date
+        "Content" = $content
+    }
     ConvertTo-Json $post | Out-File -FilePath "$($dataDir)\posts\$($label).json"
     $index += 1
 }
@@ -42,12 +42,14 @@ $postJsonFiles = Get-ChildItem "$($dataDir)\posts\*.json"
 foreach ($file in $postJsonFiles)
 {
     $postWithContent = Get-Content -Raw -Path $file | ConvertFrom-Json
-    $indexPost = $postWithContent |
-        Select-Object @{ Name = "Index"; Expression={$postWithContent.Index} }, `
-        @{n='Label';e={$postWithContent.Label}}, `
-        @{n='Tags';e={$postWithContent.Tags}}, `
-        @{n='Title';e={$postWithContent.Title}}, `
-        @{n='Date';e={$postWithContent.Date}}
+
+    $indexPost = [PSCustomObject]@{
+        "Index" = $postWithContent.Index
+        "Label" = $postWithContent.Label
+        "Tags" = @($postWithContent.Tags)
+        "Title" = $postWithContent.Title
+        "Date" = $postWithContent.Date
+    }
 
     $r = $posts.Add($indexPost)
 
