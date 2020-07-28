@@ -8,6 +8,6 @@ namespace Blazog.Models
         public string Label { get; set; }
         public string[] Tags { get; set; }
         public string Title { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }
