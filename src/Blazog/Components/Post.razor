@@ -48,7 +48,7 @@
 
         if(postDoc == null || postInfo.Hash != postDoc.Hash)
         {
-            postDoc = await Loader.LoadPost(Label);
+            postDoc = await Loader.LoadPost(postInfo.Label, postInfo.Hash);
         }
 
         html = postDoc.GetContentHtml();

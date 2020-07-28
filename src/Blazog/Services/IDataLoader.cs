@@ -6,6 +6,6 @@ namespace Blazog.Services
     public interface IDataLoader
     {
         Task InitializeBlazogAppAsync();
-        Task<PostDoc> LoadPost(string label);
+        Task<PostDoc> LoadPost(string label, string hash);
     }
 }

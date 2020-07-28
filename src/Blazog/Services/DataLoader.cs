@@ -35,11 +35,11 @@ namespace Blazog.Services
             // await LoadOther(appConfig.RootUrl);
         }
 
-        public async Task<PostDoc> LoadPost(string label)
+        public async Task<PostDoc> LoadPost(string label, string hash)
         {
-            logger.LogDebug($"LoadPost, label {label}");
+            logger.LogDebug($"LoadPost, label {label} hash {hash}");
 
-            var url = $"{rootUrl}/posts/{label}.json";
+            var url = $"{rootUrl}/posts/{label}.json?{hash}";
             var result = await http.GetStringAsync(url);
             var postDoc = JsonSerializer.Deserialize<PostDoc>(result);
 
