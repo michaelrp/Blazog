@@ -3,16 +3,11 @@
 @inject ILocalStorage Store
 @inject NavigationManager NavigationManager
 
-<h1>@postInfo.Title</h1>
-<h6>@postInfo.Date</h6>
-<p><TagLinks Tags="@postInfo.Tags"></TagLinks></p>
-<hr />
+<PostTitle Info="@postInfo"></PostTitle>
 
 <PostContent>@((MarkupString)html)</PostContent>
 
-<div>
-    <PostNavs CurrentPostIndex="@postInfo.Index"></PostNavs>
-</div>
+<PostNavs CurrentPostIndex="@postInfo.Index"></PostNavs>
 
 @code {
     [Parameter]

@@ -1,11 +1,11 @@
 @inject ILocalStorage Store
 
 <div class="d-flex justify-content-center mt-4">
-    <NavLink class="btn btn-outline-secondary mr-1" href="@($"/posts/{newerLabel}")"
+    <NavLink class="text-secondary mr-1" href="@($"/posts/{newerLabel}")"
         title="@newerTitle" Match="NavLinkMatch.All">
         <span class="oi oi-chevron-left"></span>
     </NavLink>
-    <NavLink class="btn btn-outline-secondary ml-1" href="@($"/posts/{olderLabel}")"
+    <NavLink class="text-secondary ml-1" href="@($"/posts/{olderLabel}")"
         title="@olderTitle" Match="NavLinkMatch.All">
         <span class="oi oi-chevron-right"></span>
     </NavLink>
@@ -14,13 +14,18 @@
 @code {
     [Parameter]
     public int CurrentPostIndex { get; set; }
-    private string newerLabel = "";
-    private string newerTitle = "";
-    private string olderLabel = "";
-    private string olderTitle = "";
+    private string newerLabel;
+    private string newerTitle;
+    private string olderLabel;
+    private string olderTitle;
 
     protected override async Task OnParametersSetAsync()
     {
+        newerLabel = "";
+        newerTitle = "More Posts";
+        olderLabel = "";
+        olderTitle = "More Posts";
+
         var newerPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex - 1);
         var olderPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex + 1);
 
