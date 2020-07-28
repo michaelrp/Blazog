@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Blazog.Models
@@ -13,10 +14,11 @@ namespace Blazog.Models
         public string Title { get; set; }
         public string Date { get; set; }
         public string Content { get; set; }
+        public string Hash { get; set; }
 
         public string GetContentHtml()
         {
-            if(html == null)
+            if (html == null)
             {
                 html = DecodeBase64(Content);
             }
@@ -25,7 +27,7 @@ namespace Blazog.Models
 
         private string DecodeBase64(string base64Content)
         {
-            if(string.IsNullOrEmpty(base64Content))
+            if (string.IsNullOrEmpty(base64Content))
             {
                 return "";
             }

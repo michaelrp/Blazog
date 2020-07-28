@@ -46,7 +46,7 @@
         postInfo = (await Store.GetPostInfosAsync()).FirstOrDefault(p => p.Label == Label);
         postDoc = await Store.GetPostDocAsync(Label);
 
-        if(postDoc == null)
+        if(postDoc == null || postInfo.Hash != postDoc.Hash)
         {
             postDoc = await Loader.LoadPost(Label);
         }

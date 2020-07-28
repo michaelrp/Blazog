@@ -6,6 +6,14 @@ $dataDir = ".\data"
 Remove-Item "$($dataDir)\indexes\*.*"
 Remove-Item "$($dataDir)\posts\*.*"
 
+# Calculate hash
+
+function Get-Hash($text) {
+    $hasher = [System.Security.Cryptography.HashAlgorithm]::Create('sha256')
+    $hash = $hasher.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($text))
+    [System.BitConverter]::ToString($hash).Replace('-', '').ToLower()
+}
+
 # Convert posts to json
 
 $index = 0
@@ -28,6 +36,7 @@ foreach ($file in $postMdFiles)
         "Title" = $title
         "Date" = $date
         "Content" = $content
+        "Hash" = Get-Hash($title + $date + @($postTags) + $content)
     }
     ConvertTo-Json $post | Out-File -FilePath "$($dataDir)\posts\$($label).json"
     $index += 1
@@ -49,6 +58,7 @@ foreach ($file in $postJsonFiles)
         "Tags" = @($postWithContent.Tags)
         "Title" = $postWithContent.Title
         "Date" = $postWithContent.Date
+        "Hash" = $postWithContent.Hash
     }
 
     $r = $posts.Add($indexPost)
