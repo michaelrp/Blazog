@@ -30,6 +30,9 @@ namespace Blazog.Services
         public async Task<PostInfo> GetPostInfoAsync(string label)
             => (await GetPostInfosAsync()).FirstOrDefault(p => p.Label == label);
 
+        public async Task<PostInfo> GetPostInfoByIndexAsync(int index)
+            => (await GetPostInfosAsync()).FirstOrDefault(p => p.Index == index);
+
         public async Task<PostDoc> GetPostDocAsync(string label)
             => await GetValueAsync<PostDoc>($"posts:{label}");
 

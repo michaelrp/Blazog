@@ -1,0 +1,39 @@
+@inject ILocalStorage Store
+
+<div class="d-flex justify-content-center mt-4">
+    <NavLink class="btn btn-outline-secondary mr-1" href="@($"/posts/{newerLabel}")"
+        title="@newerTitle" Match="NavLinkMatch.All">
+        <span class="oi oi-chevron-left"></span>
+    </NavLink>
+    <NavLink class="btn btn-outline-secondary ml-1" href="@($"/posts/{olderLabel}")"
+        title="@olderTitle" Match="NavLinkMatch.All">
+        <span class="oi oi-chevron-right"></span>
+    </NavLink>
+</div>
+
+@code {
+    [Parameter]
+    public int CurrentPostIndex { get; set; }
+    private string newerLabel = "";
+    private string newerTitle = "";
+    private string olderLabel = "";
+    private string olderTitle = "";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var newerPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex - 1);
+        var olderPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex + 1);
+
+        if(newerPostInfo != null)
+        {
+            newerLabel = newerPostInfo.Label;
+            newerTitle = newerPostInfo.Title;
+        }
+
+        if(olderPostInfo != null)
+        {
+            olderLabel = olderPostInfo.Label;
+            olderTitle = olderPostInfo.Title;
+        }
+    }
+}

@@ -10,6 +10,7 @@ namespace Blazog.Services
         Task<AppConfig> GetAppConfigAsync();
         Task<IEnumerable<PostInfo>> GetPostInfosAsync();
         Task<PostInfo> GetPostInfoAsync(string label);
+        Task<PostInfo> GetPostInfoByIndexAsync(int index);
         Task<PostDoc> GetPostDocAsync(string label);
         Task<IEnumerable<TagInfo>> GetTagInfosAsync();
         Task<PostDoc> GetOtherDocAsync(string label);

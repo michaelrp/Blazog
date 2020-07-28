@@ -10,16 +10,9 @@
 
 <PostContent>@((MarkupString)html)</PostContent>
 
-@* <div class="d-flex justify-content-center mt-4">
-    <NavLink class="btn btn-outline-secondary mr-3" href="@($"/posts/{postInfo.PreviousLabel}")"
-        title="@postInfo.PreviousTitle" Match="NavLinkMatch.All">
-        <span class="oi oi-chevron-left"></span> Previous
-    </NavLink>
-    <NavLink class="btn btn-outline-secondary ml-3" href="@($"/posts/{postInfo.NextLabel}")"
-        title="@postInfo.NextTitle" Match="NavLinkMatch.All">
-        Next <span class="oi oi-chevron-right"></span>
-    </NavLink>
-</div> *@
+<div>
+    <PostNavs CurrentPostIndex="@postInfo.Index"></PostNavs>
+</div>
 
 @code {
     [Parameter]
@@ -30,27 +23,36 @@
 
     protected override void OnInitialized()
     {
-        postInfo = new PostInfo {
+        postInfo = new PostInfo
+        {
             Title = "",
-            Tags = new string[] {}
+            Tags = new string[] { }
         };
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        if(string.IsNullOrEmpty(Label))
+        if (string.IsNullOrEmpty(Label))
         {
             NavigationManager.NavigateTo("/posts");
         }
 
         postInfo = (await Store.GetPostInfosAsync()).FirstOrDefault(p => p.Label == Label);
-        postDoc = await Store.GetPostDocAsync(Label);
 
-        if(postDoc == null || postInfo.Hash != postDoc.Hash)
-        {
-            postDoc = await Loader.LoadPost(postInfo.Label, postInfo.Hash);
-        }
+        postDoc = await GetPostDoc(postInfo);
 
         html = postDoc.GetContentHtml();
+    }
+
+    private async Task<PostDoc> GetPostDoc(PostInfo info)
+    {
+        postDoc = await Store.GetPostDocAsync(Label);
+
+        if (postDoc == null || info.Hash != postDoc.Hash)
+        {
+            postDoc = await Loader.LoadPost(info.Label, info.Hash);
+        }
+
+        return postDoc;
     }
 }
