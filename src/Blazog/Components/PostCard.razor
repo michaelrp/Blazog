@@ -2,6 +2,7 @@
     <div class="card h-100">
         <div class="card-body">
             <h2 class="card-title"><NavLink class="text-reset" href="@($"/posts/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
+            <h6>@Info.Date</h6>
             <p><TagLinks Tags="@Info.Tags"></TagLinks></p>
             @* <p class="card-text">@Info.Blurb</p> *@
         </div>
