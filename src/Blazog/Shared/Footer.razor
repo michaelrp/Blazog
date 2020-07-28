@@ -1,0 +1,14 @@
+@inject ILocalStorage Store
+
+<div class="copyright">
+    &copy; Copyright @DateTime.Now.Year, <a href="@config.CopyrightUrl" title="@config.CopyrightText">@config.CopyrightText</a>
+</div>
+
+@code {
+    private AppConfig config = new AppConfig();
+
+    protected override async Task OnInitializedAsync()
+    {
+        config = await Store.GetAppConfigAsync();
+    }
+}
