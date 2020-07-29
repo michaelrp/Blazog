@@ -26,27 +26,37 @@ app {
     align-items: center;
 }
 
+/* .top {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+} */
+
 .main {
     flex: 1;
 }
-
-    /* .main .top-row {
-        background-color: #f7f7f7;
-        border-bottom: 1px solid #d6d5d5;
-        justify-content: flex-end;
+ 
+    .main .top-row {
+        height: .5rem;
+        background-color: #b6cccf; 
+        /* border-bottom: 1px solid #d6d5d5; */
+        /* justify-content: flex-end; */
     }
 
-        .main .top-row > a, .main .top-row .btn-link {
+        /* .main .top-row > a, .main .top-row .btn-link {
             white-space: nowrap;
             margin-left: 1.5rem;
-        }
+        } */
 
-.main .top-row a:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
+        /* .main .top-row a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        } */
 
 .sidebar {
+    /* background-color: #0c3d44; */
     background-color: #1e555c;
 }
 
