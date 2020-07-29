@@ -1,12 +1,18 @@
 @page "/tags"
 @page "/tags/{title}"
 
-<h1>Tags</h1>
-<hr />
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Tags</h1>
+    </div>
+</div>
 
 @if(string.IsNullOrEmpty(Title))
 {
-    <TagList></TagList>
+
+    <div class="main-content">
+        <TagList></TagList>
+    </div>
 }
 else
 {

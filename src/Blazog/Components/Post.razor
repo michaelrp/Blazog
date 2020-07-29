@@ -5,9 +5,10 @@
 
 <PostTitle Info="@postInfo"></PostTitle>
 
-<PostContent>@((MarkupString)html)</PostContent>
-
-<PostNavs CurrentPostIndex="@postInfo.Index"></PostNavs>
+<div class="main-content">
+    <PostContent>@((MarkupString)html)</PostContent>
+    <PostNavs CurrentPostIndex="@postInfo.Index"></PostNavs>
+</div>
 
 @code {
     [Parameter]

@@ -46,6 +46,12 @@ app {
     text-overflow: ellipsis;
 } */
 
+.jumbotron-image {
+    background-image: url("../img/josephine-lin-hoiDR9e8Azc-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 .sidebar {
     background-color: #1e555c;
 }
@@ -100,9 +106,9 @@ app {
                 text-decoration-line: underline;
             }
 
-.content {
+/* .content {
     padding-top: 1.1rem;
-}
+} */
 
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
@@ -170,7 +176,12 @@ app {
         top: 0;
     }
 
-    .main > div {
+    .main-content {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    .footer {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
