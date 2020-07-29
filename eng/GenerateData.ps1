@@ -20,13 +20,14 @@ $index = 0
 $postMdFiles = Get-ChildItem "$($postDir)\*.md"
 foreach ($file in $postMdFiles)
 {
-    $metadata = Get-Content $file -First 3
+    $metadata = Get-Content $file -First 4
     $title = $metadata[0].Substring(6).Trim()
     $postTags = $metadata[1].Substring(5).Split(",").Trim()
     $date = $metadata[2].Substring(5).Trim()
+    $blurb = $metadata[3].Substring(6).Trim()
 
     $label = $file | Select-Object -ExpandProperty BaseName
-    $content = Get-Content $file | Select-Object -Skip 3 | Out-String
+    $content = Get-Content $file | Select-Object -Skip 4 | Out-String
     $html = ConvertFrom-Markdown -InputObject $content | Select-Object -ExpandProperty Html
     $content = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($html))
     $post = [PSCustomObject]@{
@@ -35,8 +36,9 @@ foreach ($file in $postMdFiles)
         "Tags" = @($postTags)
         "Title" = $title
         "Date" = $date
+        "Blurb" = $blurb
         "Content" = $content
-        "Hash" = Get-Hash($title + $date + @($postTags) + $content)
+        "Hash" = Get-Hash($title + @($postTags) + $date + $blurb + $content)
     }
     ConvertTo-Json $post | Out-File -FilePath "$($dataDir)\posts\$($label).json"
     $index += 1
@@ -58,6 +60,7 @@ foreach ($file in $postJsonFiles)
         "Tags" = @($postWithContent.Tags)
         "Title" = $postWithContent.Title
         "Date" = $postWithContent.Date
+        "Blurb" = $postWithContent.Blurb
         "Hash" = $postWithContent.Hash
     }
 

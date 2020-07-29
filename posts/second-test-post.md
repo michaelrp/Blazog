@@ -1,6 +1,7 @@
-Title: This is the second post
+Title: Test all the things
 Tags: Blazog, Markdown
 Date: 7/27/2020 2:15 PM
+Blurb: This post runs through all the Markdown options
 
 ---
 __Advertisement :)__

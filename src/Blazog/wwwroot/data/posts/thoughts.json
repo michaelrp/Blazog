@@ -1,12 +1,13 @@
 {
   "Index": 3,
-  "Label": "third-post-is-the-charm",
+  "Label": "thoughts",
   "Tags": [
     "PowerShell",
     "Deep Thoughts"
   ],
   "Title": "Deep Thoughts",
-  "Date": "7/27/2020 2:12 PM",
+  "Date": "7/27/2020 2:14 PM",
+  "Blurb": "Some thoughts on things",
   "Content": "PGgxIGlkPSJsZXQtbWUtdGVsbC15b3UtYWJvdXQtc29tZS1kZWVwLXRob3VnaHRzIj5MZXQgbWUgdGVsbCB5b3UgYWJvdXQgc29tZSBkZWVwIHRob3VnaHRzPC9oMT4KPHA+QSB0ZXN0IHBvc3Q8L3A+Cg==",
-  "Hash": "6101db243841c223a4d8850403528400f8f4ca22d8fd5f939bce389029149892"
+  "Hash": "c97f4d7df5080eddd5d933c073b85cb90c2425c65e20cdd39f3f1c73ee24b4ca"
 }

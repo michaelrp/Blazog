@@ -1,6 +1,6 @@
 {
     "Title": "Blazog",
-    "RootUrl": "https://raw.githubusercontent.com/michaelrp/Blazog/main/data",
+    "RootUrl": "data",
     "CopyrightText": "Blazog",
     "CopyrightUrl": "https://www.blazog.net"
 }
