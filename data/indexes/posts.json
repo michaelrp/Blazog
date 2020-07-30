@@ -1,50 +1,50 @@
 [
   {
-    "Index": 0,
-    "Label": "brand-new-post",
-    "Tags": [
+    "index": 0,
+    "label": "brand-new-post",
+    "tags": [
       "PowerShell"
     ],
-    "Title": "Brand New Post",
-    "Date": "7/27/2020 6:12 PM",
-    "Blurb": "The first post that you see",
-    "Hash": "41841eaf27de7319b98d397ef3be5863868014438f3caafb070f39bce0499705"
+    "title": "Brand New Post",
+    "date": "7/27/2020 6:12 PM",
+    "blurb": "The first post that you see",
+    "hash": "41841eaf27de7319b98d397ef3be5863868014438f3caafb070f39bce0499705"
   },
   {
-    "Index": 1,
-    "Label": "second-test-post",
-    "Tags": [
+    "index": 1,
+    "label": "second-test-post",
+    "tags": [
       "Blazog",
       "Markdown"
     ],
-    "Title": "Test all the things",
-    "Date": "7/27/2020 2:15 PM",
-    "Blurb": "This post runs through all the Markdown options",
-    "Hash": "82dae23e9eca268043ad57daa1dfa8e89a77e4ffda3cca428eda16c6c0629b15"
+    "title": "Test all the things",
+    "date": "7/27/2020 2:15 PM",
+    "blurb": "This post runs through all the Markdown options",
+    "hash": "82dae23e9eca268043ad57daa1dfa8e89a77e4ffda3cca428eda16c6c0629b15"
   },
   {
-    "Index": 3,
-    "Label": "thoughts",
-    "Tags": [
+    "index": 3,
+    "label": "thoughts",
+    "tags": [
       "PowerShell",
       "Deep Thoughts"
     ],
-    "Title": "Deep Thoughts",
-    "Date": "7/27/2020 2:14 PM",
-    "Blurb": "Some thoughts on things",
-    "Hash": "c97f4d7df5080eddd5d933c073b85cb90c2425c65e20cdd39f3f1c73ee24b4ca"
+    "title": "Deep Thoughts",
+    "date": "7/27/2020 2:14 PM",
+    "blurb": "Some thoughts on things",
+    "hash": "c97f4d7df5080eddd5d933c073b85cb90c2425c65e20cdd39f3f1c73ee24b4ca"
   },
   {
-    "Index": 2,
-    "Label": "test-post",
-    "Tags": [
+    "index": 2,
+    "label": "test-post",
+    "tags": [
       "SQL",
       "Blazog",
       "PowerShell"
     ],
-    "Title": "This is the first post",
-    "Date": "7/27/2020 2:12 PM",
-    "Blurb": "Check this out",
-    "Hash": "2b1bf8e0a39d34b4dda41ceac53ff1c3ef3ed2142995ce9152861a21299dab12"
+    "title": "This is the first post",
+    "date": "7/27/2020 2:12 PM",
+    "blurb": "Check this out",
+    "hash": "2b1bf8e0a39d34b4dda41ceac53ff1c3ef3ed2142995ce9152861a21299dab12"
   }
 ]

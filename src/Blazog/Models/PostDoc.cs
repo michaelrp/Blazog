@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Blazog.Models
 {
@@ -8,13 +9,21 @@ namespace Blazog.Models
     {
         private string html;
 
+        [JsonPropertyName("index")]
         private int Index { get; set; }
+        [JsonPropertyName("label")]
         public string Label { get; set; }
+        [JsonPropertyName("tags")]
         public string[] Tags { get; set; }
+        [JsonPropertyName("title")]
         public string Title { get; set; }
+        [JsonPropertyName("date")]
         public string Date { get; set; }
+        [JsonPropertyName("blurb")]
         public string Blurb { get; set; }
+        [JsonPropertyName("content")]
         public string Content { get; set; }
+        [JsonPropertyName("hash")]
         public string Hash { get; set; }
 
         public string GetContentHtml()

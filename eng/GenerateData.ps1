@@ -31,14 +31,14 @@ foreach ($file in $postMdFiles)
     $html = ConvertFrom-Markdown -InputObject $content | Select-Object -ExpandProperty Html
     $content = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($html))
     $post = [PSCustomObject]@{
-        "Index" = $index
-        "Label" = $label
-        "Tags" = @($postTags)
-        "Title" = $title
-        "Date" = $date
-        "Blurb" = $blurb
-        "Content" = $content
-        "Hash" = Get-Hash($title + @($postTags) + $date + $blurb + $content)
+        "index" = $index
+        "label" = $label
+        "tags" = @($postTags)
+        "title" = $title
+        "date" = $date
+        "blurb" = $blurb
+        "content" = $content
+        "hash" = Get-Hash($title + @($postTags) + $date + $blurb + $content)
     }
     ConvertTo-Json $post | Out-File -FilePath "$($dataDir)\posts\$($label).json"
     $index += 1
@@ -55,13 +55,13 @@ foreach ($file in $postJsonFiles)
     $postWithContent = Get-Content -Raw -Path $file | ConvertFrom-Json
 
     $indexPost = [PSCustomObject]@{
-        "Index" = $postWithContent.Index
-        "Label" = $postWithContent.Label
-        "Tags" = @($postWithContent.Tags)
-        "Title" = $postWithContent.Title
-        "Date" = $postWithContent.Date
-        "Blurb" = $postWithContent.Blurb
-        "Hash" = $postWithContent.Hash
+        "index" = $postWithContent.Index
+        "label" = $postWithContent.Label
+        "tags" = @($postWithContent.Tags)
+        "title" = $postWithContent.Title
+        "date" = $postWithContent.Date
+        "blurb" = $postWithContent.Blurb
+        "hash" = $postWithContent.Hash
     }
 
     $r = $posts.Add($indexPost)
@@ -79,7 +79,7 @@ $posts |
 
 $tagHash.GetEnumerator() | 
     Sort-Object -Property Key |
-    Select-Object @{Name="Title"; Expression={$_.Key}}, @{Name="PostCount"; Expression={$_.Value}} |
+    Select-Object @{Name="title"; Expression={$_.Key}}, @{Name="postCount"; Expression={$_.Value}} |
     ConvertTo-Json |
     Out-File -FilePath "$($dataDir)\indexes\tags.json"
 

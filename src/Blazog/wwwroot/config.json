@@ -1,6 +1,6 @@
 {
-    "Title": "Blazog",
-    "RootUrl": "data",
-    "CopyrightText": "Blazog",
-    "CopyrightUrl": "https://www.blazog.net"
+    "title": "Blazog",
+    "rootUrl": "data",
+    "copyrightText": "Blazog",
+    "copyrightUrl": "https://www.blazog.net"
 }

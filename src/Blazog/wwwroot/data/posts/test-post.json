@@ -1,14 +1,14 @@
 {
-  "Index": 2,
-  "Label": "test-post",
-  "Tags": [
+  "index": 2,
+  "label": "test-post",
+  "tags": [
     "SQL",
     "Blazog",
     "PowerShell"
   ],
-  "Title": "This is the first post",
-  "Date": "7/27/2020 2:12 PM",
-  "Blurb": "Check this out",
-  "Content": "PGgxIGlkPSJ0aGlzLWlzLXRoZS1maXJzdC10ZXN0LXBvc3QiPlRoaXMgaXMgdGhlIGZpcnN0IHRlc3QgcG9zdDwvaDE+CjxwPkEgdGVzdCBwb3N0PC9wPgo=",
-  "Hash": "2b1bf8e0a39d34b4dda41ceac53ff1c3ef3ed2142995ce9152861a21299dab12"
+  "title": "This is the first post",
+  "date": "7/27/2020 2:12 PM",
+  "blurb": "Check this out",
+  "content": "PGgxIGlkPSJ0aGlzLWlzLXRoZS1maXJzdC10ZXN0LXBvc3QiPlRoaXMgaXMgdGhlIGZpcnN0IHRlc3QgcG9zdDwvaDE+CjxwPkEgdGVzdCBwb3N0PC9wPgo=",
+  "hash": "2b1bf8e0a39d34b4dda41ceac53ff1c3ef3ed2142995ce9152861a21299dab12"
 }

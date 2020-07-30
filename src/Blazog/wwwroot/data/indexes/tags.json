@@ -1,22 +1,22 @@
 [
   {
-    "Title": "Blazog",
-    "PostCount": 2
+    "title": "Blazog",
+    "postCount": 2
   },
   {
-    "Title": "Deep Thoughts",
-    "PostCount": 1
+    "title": "Deep Thoughts",
+    "postCount": 1
   },
   {
-    "Title": "Markdown",
-    "PostCount": 1
+    "title": "Markdown",
+    "postCount": 1
   },
   {
-    "Title": "PowerShell",
-    "PostCount": 3
+    "title": "PowerShell",
+    "postCount": 3
   },
   {
-    "Title": "SQL",
-    "PostCount": 1
+    "title": "SQL",
+    "postCount": 1
   }
 ]
