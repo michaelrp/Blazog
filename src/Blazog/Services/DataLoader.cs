@@ -30,10 +30,45 @@ namespace Blazog.Services
             var appConfig = await LoadAppConfig();
             rootUrl = appConfig.RootUrl;
 
-            await LoadPostInfos();
-            await LoadTagInfos();
-            // await LoadOther(appConfig.RootUrl);
+            var existingLoadId = await store.GetLastLoadIdAsync();
+            var remoteLoadId = await LoadLastLoadId(); // this updates the guid in the store
+
+            // if load id is different (new posts generated), reload
+            if(string.IsNullOrEmpty(existingLoadId) || existingLoadId != remoteLoadId)
+            {
+                await LoadPostInfos();
+                await LoadTagInfos();
+                // await LoadOther(appConfig.RootUrl);
+            }
+            else
+            {
+                // check to make sure not deleted
+                var posts = await store.GetPostInfosAsync();
+                if(posts == null)
+                {
+                    await LoadPostInfos();
+                }
+
+                // check to make sure not deleted
+                var tags = await store.GetTagInfosAsync();
+                if(tags == null)
+                {
+                    await LoadTagInfos();
+                }
+            }
         }
+
+        public async Task<string> LoadLastLoadId()
+        {
+            logger.LogDebug("LoadGuid");
+
+            var url = $"{rootUrl}/indexes/guid.txt";
+            var id = await http.GetStringAsync(url);
+
+            await store.SaveLastLoadIdAsync(id);
+
+            return id;
+        }        
 
         public async Task<PostDoc> LoadPost(string label, string hash)
         {
