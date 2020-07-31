@@ -18,8 +18,11 @@ jobs:
       with:
         dotnet-version: 3.1.302
     - name: Install dependencies
+      working-directory: ./src/Blazog
       run: dotnet restore
     - name: Build
+      working-directory: ./src/Blazog
       run: dotnet build --configuration Release --no-restore
     - name: Test
+      working-directory: ./src/Blazog
       run: dotnet test --no-restore --verbosity normal
