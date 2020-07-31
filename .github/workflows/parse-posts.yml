@@ -12,5 +12,5 @@ jobs:
       - name: Azure PowerShell Action
         uses: Azure/powershell@v1
         with:
-          inline-script: >
+          inlineScript: >
             .\eng\GenerateData.ps1
