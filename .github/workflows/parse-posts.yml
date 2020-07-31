@@ -1,0 +1,16 @@
+name: Parse posts
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Azure PowerShell Action
+        uses: Azure/powershell@v1
+        with:
+          inline-script: >
+            .\eng\GenerateData.ps1
