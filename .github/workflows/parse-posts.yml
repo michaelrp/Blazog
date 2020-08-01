@@ -16,6 +16,9 @@ jobs:
       - name: Output location
         run: Get-Location
         shell: pwsh
+      - name: Output ls
+        run: ls
+        shell: pwsh
       - name: Generate JSON Output
         run: .\eng\GenerateData.ps1
         shell: pwsh
