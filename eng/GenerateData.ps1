@@ -5,7 +5,10 @@ param(
 
 # Clear data
 
+"Remove-Item '$($dataDir)\indexes\*.*'"
 Remove-Item "$($dataDir)\indexes\*.*"
+
+"Remove-Item '$($dataDir)\posts\*.*'"
 Remove-Item "$($dataDir)\posts\*.*"
 
 # Calculate hash
@@ -20,9 +23,11 @@ function Get-Hash($text) {
 # Convert posts to json
 
 $index = 0
+"Get-ChildItem '$($postDir)\*.md'"
 $postMdFiles = Get-ChildItem "$($postDir)\*.md"
 foreach ($file in $postMdFiles)
 {
+    "Process '$($file)'"
     $metadata = Get-Content $file -First 4
     $title = $metadata[0].Substring(6).Trim()
     $postTags = $metadata[1].Substring(5).Split(",").Trim()
@@ -79,11 +84,13 @@ foreach ($file in $postJsonFiles)
     }
 }
 
+"Save 'posts.json'"
 $posts | 
     Sort-Object -Descending -Property Date |
     ConvertTo-Json |
     Out-File -FilePath "$($dataDir)\indexes\posts.json"
 
+"Save 'tags.json'"
 $tagHash.GetEnumerator() | 
     Sort-Object -Property Key |
     Select-Object @{Name="title"; Expression={$_.Key}}, @{Name="postCount"; Expression={$_.Value}} |
@@ -92,4 +99,5 @@ $tagHash.GetEnumerator() |
 
 # Generate a guid to indicate new data
 
+"Save 'guid.txt'"
 [GUID]::NewGuid().ToString('N') | Out-File -FilePath "$($dataDir)\indexes\guid.txt"
