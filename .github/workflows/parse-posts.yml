@@ -15,4 +15,5 @@ jobs:
     steps:
       - name: Generate JSON Output
         shell: pwsh
-        run: ..\..\eng\GenerateData.ps1
+        working-directory: ./eng
+        run: .\GenerateData.ps1 -postDir '$GITHUB_WORKSPACE/posts' -dataDir '$GITHUB_WORKSPACE/data'
