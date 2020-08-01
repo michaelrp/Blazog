@@ -16,6 +16,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate JSON Output
         shell: pwsh
-        working-directory: ./eng
-        run: Get-Location
-        # run: .\GenerateData.ps1 -postDir '..\posts' -dataDir '..\data'
+        run: .\eng\GenerateData.ps1 -postDir '.\posts' -dataDir '.\data'
