@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output location
+      - name: Output Get-Location
         run: Get-Location
         shell: pwsh
-      - name: Output ls
-        run: ls
+      - name: Output Get-ChildItem
+        run: Get-ChildItem
         shell: pwsh
       - name: Generate JSON Output
         run: .\eng\GenerateData.ps1
