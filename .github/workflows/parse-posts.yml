@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display dir
-        run: dir
-        shell: cmd
+      - name: Display ls
+        shell: bash
+        run: ls
       - name: Generate JSON Output
-        run: .\eng\GenerateData.ps1
         shell: pwsh
+        run: .\eng\GenerateData.ps1
