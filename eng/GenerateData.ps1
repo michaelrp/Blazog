@@ -1,5 +1,7 @@
-$postDir = ".\posts"
-$dataDir = ".\data"
+param(
+    $postDir = ".\posts",
+    $dataDir = ".\data"
+)
 
 # Clear data
 
