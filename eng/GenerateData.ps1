@@ -23,7 +23,11 @@ foreach ($file in $postMdFiles)
     $metadata = Get-Content $file -First 4
     $title = $metadata[0].Substring(6).Trim()
     $postTags = $metadata[1].Substring(5).Split(",").Trim()
-    $date = $metadata[2].Substring(5).Trim()
+    $dateInput = $metadata[2].Substring(5).Trim()
+
+    # 7/27/2020 6:12 PM
+    $date = [datetime]::parseexact($dateInput, 'M/dd/yyyy h:mm tt', $null)
+
     $blurb = $metadata[3].Substring(6).Trim()
 
     $label = $file | Select-Object -ExpandProperty BaseName

@@ -6,9 +6,9 @@
       "PowerShell"
     ],
     "title": "Brand New Post",
-    "date": "7/27/2020 6:12 PM",
+    "date": "2020-07-27T18:12:00",
     "blurb": "The first post that you see",
-    "hash": "41841eaf27de7319b98d397ef3be5863868014438f3caafb070f39bce0499705"
+    "hash": "5fb7c5bf6cece52a9a7dab7070fee68f91ee592b865006e2d7d0891589e04b77"
   },
   {
     "index": 1,
@@ -18,9 +18,9 @@
       "Markdown"
     ],
     "title": "Test all the things",
-    "date": "7/27/2020 2:15 PM",
+    "date": "2020-07-27T14:15:00",
     "blurb": "This post runs through all the Markdown options",
-    "hash": "82dae23e9eca268043ad57daa1dfa8e89a77e4ffda3cca428eda16c6c0629b15"
+    "hash": "e3567c16a92f24234a6acd7b1aa8dcb2d46b9b91803b160a67cc67bd0fff9d18"
   },
   {
     "index": 3,
@@ -30,9 +30,9 @@
       "Deep Thoughts"
     ],
     "title": "Deep Thoughts",
-    "date": "7/27/2020 2:14 PM",
+    "date": "2020-07-27T14:14:00",
     "blurb": "Some thoughts on things",
-    "hash": "c97f4d7df5080eddd5d933c073b85cb90c2425c65e20cdd39f3f1c73ee24b4ca"
+    "hash": "f6e14cde68515f4aeba1aa96db942a2228aa13ea9ddf9d51f1f2792014d6c253"
   },
   {
     "index": 2,
@@ -43,8 +43,8 @@
       "PowerShell"
     ],
     "title": "This is the first post",
-    "date": "7/27/2020 2:12 PM",
+    "date": "2020-07-27T14:12:00",
     "blurb": "Check this out",
-    "hash": "2b1bf8e0a39d34b4dda41ceac53ff1c3ef3ed2142995ce9152861a21299dab12"
+    "hash": "65b49f6a565dd548e6616c571d0fca0388025b00c6fa1bc39c9b6f8b94142f26"
   }
 ]

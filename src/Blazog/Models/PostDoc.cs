@@ -1,6 +1,4 @@
 using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace Blazog.Models
@@ -18,7 +16,7 @@ namespace Blazog.Models
         [JsonPropertyName("title")]
         public string Title { get; set; }
         [JsonPropertyName("date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         [JsonPropertyName("blurb")]
         public string Blurb { get; set; }
         [JsonPropertyName("content")]
