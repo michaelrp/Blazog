@@ -3,6 +3,9 @@ name: Parse posts
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.md'
+      - '**.ps1'
     
 jobs:
   parse:

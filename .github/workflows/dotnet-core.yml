@@ -3,9 +3,14 @@ name: .NET Core
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - '**.ps1'
   pull_request:
     branches: [ main ]
-
+    paths-ignore:
+      - '**.md'
+      - '**.ps1'
 jobs:
   build:
 
