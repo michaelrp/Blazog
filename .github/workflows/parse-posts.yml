@@ -13,12 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output Get-Location
-        run: Get-Location
-        shell: pwsh
-      - name: Output Get-ChildItem
-        run: Get-ChildItem | Out-String
-        shell: pwsh
+      - name: Display dir
+        run: dir
+        shell: cmd
       - name: Generate JSON Output
         run: .\eng\GenerateData.ps1
         shell: pwsh
