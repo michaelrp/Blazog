@@ -15,6 +15,6 @@ jobs:
     steps:
       - name: Generate JSON Output
         shell: pwsh
-        working-directory: ../eng
+        working-directory: ../Blazog
         run: echo 'test test'
         # run: .\GenerateData.ps1 -postDir '..\posts' -dataDir '..\data'
