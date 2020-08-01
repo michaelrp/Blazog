@@ -16,4 +16,5 @@ jobs:
       - name: Generate JSON Output
         shell: pwsh
         working-directory: ./eng
-        run: .\GenerateData.ps1 -postDir '..\posts' -dataDir '..\data'
+        run: Get-Location
+        # run: .\GenerateData.ps1 -postDir '..\posts' -dataDir '..\data'
