@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Generate JSON Output
         shell: pwsh
-        working-directory: ../Blazog/eng
+        working-directory: ./eng
         run: Get-Location
         # run: .\GenerateData.ps1 -postDir '..\posts' -dataDir '..\data'
