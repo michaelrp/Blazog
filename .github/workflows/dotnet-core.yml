@@ -6,11 +6,13 @@ on:
     paths-ignore:
       - '**.md'
       - '**.ps1'
+      - '**/parse-posts.yml'
   pull_request:
     branches: [ main ]
     paths-ignore:
       - '**.md'
       - '**.ps1'
+      - '**/parse-posts.yml'
 jobs:
   build:
 
