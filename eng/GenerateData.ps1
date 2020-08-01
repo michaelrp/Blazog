@@ -11,7 +11,8 @@ Remove-Item "$($dataDir)\posts\*.*"
 function Get-Hash($text) {
     $hasher = [System.Security.Cryptography.HashAlgorithm]::Create('sha256')
     $hash = $hasher.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($text))
-    [System.BitConverter]::ToString($hash).Replace('-', '').ToLower()
+    $hashString = [System.BitConverter]::ToString($hash)
+    $hashString.Replace('-', '').ToLower()
 }
 
 # Convert posts to json
