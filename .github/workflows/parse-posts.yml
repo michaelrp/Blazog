@@ -6,6 +6,7 @@ on:
     paths:
       - '**.md'
       - '**.ps1'
+      - '**/parse-posts.yml'
     
 jobs:
   parse:
@@ -15,8 +16,6 @@ jobs:
       - name: Output location
         run: echo Get-Location
         shell: pwsh
-
-    steps:
       - name: Generate JSON Output
         run: .\eng\GenerateData.ps1
         shell: pwsh
