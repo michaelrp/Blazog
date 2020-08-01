@@ -17,7 +17,7 @@ jobs:
         run: Get-Location
         shell: pwsh
       - name: Output Get-ChildItem
-        run: Get-ChildItem
+        run: Get-ChildItem | Out-String
         shell: pwsh
       - name: Generate JSON Output
         run: .\eng\GenerateData.ps1
