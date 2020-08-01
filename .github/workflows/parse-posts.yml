@@ -15,4 +15,4 @@ jobs:
     steps:
       - name: Generate JSON Output
         shell: pwsh
-        run: eng/GenerateData.ps1
+        run: .\TestScript.ps1
