@@ -25,4 +25,5 @@ jobs:
             az storage blob upload-batch
             -s $GITHUB_WORKSPACE/data
             -d \$web
+            --destination-path data  
             --connection-string '${{ secrets.STORAGE_CONNECTION_STRING }}'
