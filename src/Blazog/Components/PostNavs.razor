@@ -3,11 +3,14 @@
 <div class="d-flex justify-content-center mt-4">
     <NavLink class="text-secondary mr-1" href="@($"/posts/{newerLabel}")"
         title="@newerTitle" Match="NavLinkMatch.All">
-        <span class="oi oi-chevron-left"></span>
+        « @newerTitle
     </NavLink>
+    <span> | </span>
+    <NavLink class="text-secondary mr-1 ml-1" href="posts">Posts</NavLink>
+    <span> | </span>
     <NavLink class="text-secondary ml-1" href="@($"/posts/{olderLabel}")"
         title="@olderTitle" Match="NavLinkMatch.All">
-        <span class="oi oi-chevron-right"></span>
+        @olderTitle »
     </NavLink>
 </div>
 

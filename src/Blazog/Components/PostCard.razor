@@ -1,13 +1,11 @@
-<div class="col mb-4">
-    <div class="card h-100">
-        <div class="card-body">
-            <h2 class="card-title"><NavLink class="text-reset" href="@($"/posts/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
-            <p class="card-text">
-                <h6>@Info.Date.ToString("M/dd/yyyy h:mm tt")</h6>
-                <p><TagLinks Tags="@Info.Tags"></TagLinks></p>
-                <p>@Info.Blurb</p>
-            </p>
-        </div>
+<div class="card h-100">
+    <div class="card-body">
+        <h2 class="card-title"><NavLink class="text-reset" href="@($"/posts/{Info.Label}")" title="@(Info.Title)">@Info.Title</NavLink></h2>
+        <p class="card-text">
+            <h6>@Info.Date.ToString("M/dd/yyyy h:mm tt")</h6>
+            <p><TagLinks Tags="@Info.Tags"></TagLinks></p>
+            <p>@Info.Blurb</p>
+        </p>
     </div>
 </div>
 

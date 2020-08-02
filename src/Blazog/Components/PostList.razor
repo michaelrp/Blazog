@@ -7,10 +7,12 @@
 }
 else
 {
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="row">
         @foreach (var postInfo in displayPostInfos)
         {
+        <div class="col-sm-6 col-md-4 mb-4">
             <PostCard Info="@postInfo"></PostCard>
+        </div>
         }
     </div>
 }
