@@ -24,5 +24,5 @@ jobs:
           inlineScript: >
             az storage blob upload-batch
             -s $GITHUB_WORKSPACE/data
-            -d \$web\data
+            -d \$web
             --connection-string '${{ secrets.STORAGE_CONNECTION_STRING }}'
