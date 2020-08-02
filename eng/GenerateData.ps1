@@ -5,11 +5,14 @@ param(
 
 # Clear data
 
-"Remove-Item '$($dataDir)\indexes\*.*'"
-Remove-Item "$($dataDir)\indexes\*.*"
+if (Test-Path $dataDir) {
+    Remove-Item -Path $dataDir -Recurse
+}
 
-"Remove-Item '$($dataDir)\posts\*.*'"
-Remove-Item "$($dataDir)\posts\*.*"
+New-Item -Path $dataDir -ItemType "directory"
+New-Item -Path "$($dataDir)\indexes" -ItemType "directory"
+New-Item -Path "$($dataDir)\other" -ItemType "directory"
+New-Item -Path "$($dataDir)\posts" -ItemType "directory"
 
 # Calculate hash
 
@@ -34,7 +37,7 @@ foreach ($file in $postMdFiles)
     $dateInput = $metadata[2].Substring(5).Trim()
 
     # 7/27/2020 6:12 PM
-    $date = [datetime]::parseexact($dateInput, 'M/dd/yyyy h:mm tt', $null)
+    $date = [datetime]::parseexact($dateInput, 'M/d/yyyy h:mm tt', $null)
 
     $blurb = $metadata[3].Substring(6).Trim()
 
