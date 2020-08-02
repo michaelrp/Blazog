@@ -17,3 +17,12 @@ jobs:
       - name: Generate JSON Output
         shell: pwsh
         run: .\eng\GenerateData.ps1 -postDir '.\posts' -dataDir '.\data'
+      - name: Copy to blob storage
+        uses: Azure/cli@v1
+        with:
+          azcliversion: latest
+          inlineScript: >
+            az storage blob upload-batch
+            -s $GITHUB_WORKSPACE/data
+            -d \$web\data
+            --connection-string '${{ secrets.STORAGE_CONNECTION_STRING }}'
