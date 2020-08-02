@@ -1,6 +1,6 @@
 {
     "title": "Blazog",
-    "rootUrl": "https://blazog.z13.web.core.windows.net/data",
+    "rootUrl": "data",
     "copyrightText": "Blazog",
     "copyrightUrl": "https://www.blazog.net"
 }
