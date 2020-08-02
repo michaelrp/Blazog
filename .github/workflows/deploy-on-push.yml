@@ -7,12 +7,7 @@ on:
       - '**.md'
       - '**.ps1'
       - '**/parse-posts.yml'
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-      - '**.md'
-      - '**.ps1'
-      - '**/parse-posts.yml'
+
 jobs:
   build:
 
@@ -33,3 +28,15 @@ jobs:
     - name: Test
       working-directory: ./src/Blazog
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish
+      working-directory: ./src/Blazog
+      run: dotnet publish --configuration Release --no-restore
+    - name: Copy to blob storage
+      uses: Azure/cli@v1
+      with:
+        azcliversion: latest
+        inlineScript: >
+          az storage blob upload-batch
+          -s $GITHUB_WORKSPACE/src/Blazog/bin/Release/netstandard2.1/publish/wwwroot
+          -d \$web
+          --connection-string '${{ secrets.STORAGE_CONNECTION_STRING }}'
