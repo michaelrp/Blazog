@@ -18,9 +18,10 @@ namespace Blazog
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+
             builder.Services.AddScoped<IDataLoader, DataLoader>();
             builder.Services.AddSingleton<ILocalStorage, LocalStorage>();
-
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             var host = builder.Build();

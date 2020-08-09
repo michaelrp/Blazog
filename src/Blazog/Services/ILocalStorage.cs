@@ -7,7 +7,6 @@ namespace Blazog.Services
     public interface ILocalStorage
     {
         Task ClearAllDataAsync();
-        Task<AppConfig> GetAppConfigAsync();
         Task<IEnumerable<PostInfo>> GetPostInfosAsync();
         Task<PostInfo> GetPostInfoAsync(string label);
         Task<PostInfo> GetPostInfoByIndexAsync(int index);
@@ -15,7 +14,6 @@ namespace Blazog.Services
         Task<IEnumerable<TagInfo>> GetTagInfosAsync();
         Task<PostDoc> GetOtherDocAsync(string label);
         Task<string> GetLastLoadIdAsync();
-        Task SaveAppConfig(AppConfig appConfig);
         Task SavePostInfosAsnyc(IEnumerable<PostInfo> postInfos);
         Task SaveTagInfosAsync(IEnumerable<TagInfo> tagInfos);
         Task SavePostDocAsync(string label, PostDoc postDoc);

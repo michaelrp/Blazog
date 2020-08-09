@@ -1,16 +1,9 @@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @inject ILocalStorage Store
 
 <div class="d-flex justify-content-center mt-4">
     <div class="copyright">
-        &copy; Copyright @DateTime.Now.Year, <a href="@config.CopyrightUrl" title="@config.CopyrightText">@config.CopyrightText</a>
+        &copy; Copyright @DateTime.Now.Year, <a href="@Configuration["CopyrightUrl"]" title="@Configuration["CopyrightText"]">@Configuration["CopyrightText"]</a>
     </div>
 </div>
-
-@code {
-    private AppConfig config = new AppConfig();
-
-    protected override async Task OnInitializedAsync()
-    {
-        config = await Store.GetAppConfigAsync();
-    }
-}

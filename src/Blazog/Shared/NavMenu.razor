@@ -1,7 +1,8 @@
-﻿@inject ILocalStorage Store
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 
 <div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">@title</a>
+    <a class="navbar-brand" href="">@Configuration["Title"]</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,12 +31,6 @@
 @code {
     private bool collapseNavMenu = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string title = "";
-
-    protected override async Task OnInitializedAsync()
-    {
-        title = (await Store.GetAppConfigAsync()).Title;
-    }
 
     private void ToggleNavMenu()
     {

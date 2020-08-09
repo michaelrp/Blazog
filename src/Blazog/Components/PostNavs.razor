@@ -1,47 +1,56 @@
+@using Microsoft.Extensions.Logging
 @inject ILocalStorage Store
+@inject ILogger<PostNavs> Logger
 
 <div class="d-flex justify-content-center mt-4">
-    <NavLink class="text-secondary mr-1" href="@($"/posts/{newerLabel}")"
-        title="@newerTitle" Match="NavLinkMatch.All">
-        « @newerTitle
+    <NavLink class="text-secondary mr-1" href="@($"/posts/{leftLabel}")"
+        title="@leftTitle" Match="NavLinkMatch.All">
+        « @leftTitle
     </NavLink>
     <span> | </span>
     <NavLink class="text-secondary mr-1 ml-1" href="posts">Posts</NavLink>
     <span> | </span>
-    <NavLink class="text-secondary ml-1" href="@($"/posts/{olderLabel}")"
-        title="@olderTitle" Match="NavLinkMatch.All">
-        @olderTitle »
+    <NavLink class="text-secondary ml-1" href="@($"/posts/{rightLabel}")"
+        title="@rightTitle" Match="NavLinkMatch.All">
+        @rightTitle »
     </NavLink>
 </div>
 
 @code {
     [Parameter]
     public int CurrentPostIndex { get; set; }
-    private string newerLabel;
-    private string newerTitle;
-    private string olderLabel;
-    private string olderTitle;
+    private string leftLabel;
+    private string leftTitle;
+    private string rightLabel;
+    private string rightTitle;
 
     protected override async Task OnParametersSetAsync()
     {
-        newerLabel = "";
-        newerTitle = "More Posts";
-        olderLabel = "";
-        olderTitle = "More Posts";
+        Logger.LogDebug($"CurrentPostIndex {CurrentPostIndex}");
 
-        var newerPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex - 1);
-        var olderPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex + 1);
+        var leftPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex - 1);
+        var rightPostInfo = await Store.GetPostInfoByIndexAsync(CurrentPostIndex + 1);
 
-        if(newerPostInfo != null)
+        if (leftPostInfo == null)
         {
-            newerLabel = newerPostInfo.Label;
-            newerTitle = newerPostInfo.Title;
+            leftLabel = "";
+            leftTitle = "More Posts";
+        }
+        else
+        {
+            leftLabel = leftPostInfo.Label;
+            leftTitle = leftPostInfo.Title;
         }
 
-        if(olderPostInfo != null)
+        if (rightPostInfo == null)
         {
-            olderLabel = olderPostInfo.Label;
-            olderTitle = olderPostInfo.Title;
+            rightLabel = "";
+            rightTitle = "More Posts";
+        }
+        else
+        {
+            rightLabel = rightPostInfo.Label;
+            rightTitle = rightPostInfo.Title;
         }
     }
 }

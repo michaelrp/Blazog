@@ -22,8 +22,6 @@ namespace Blazog.Services
             await jsRuntime.InvokeAsync<object>("localStorage.clear");
         }
 
-        public async Task<AppConfig> GetAppConfigAsync()
-            => await GetValueAsync<AppConfig>("config");
         public async Task<IEnumerable<PostInfo>> GetPostInfosAsync()
             => await GetValueAsync<IEnumerable<PostInfo>>("posts");
 
@@ -45,8 +43,6 @@ namespace Blazog.Services
         public async Task<string> GetLastLoadIdAsync()
             => await GetValueAsync<string>("last-load");
 
-        public async Task SaveAppConfig(AppConfig appConfig)
-            => await SetValueAsync("config", appConfig);
         public async Task SavePostInfosAsnyc(IEnumerable<PostInfo> postInfos)
             => await SetValueAsync<IEnumerable<PostInfo>>("posts", postInfos);
 

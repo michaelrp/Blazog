@@ -1,5 +1,4 @@
 @page "/posts"
-@page "/posts/{page:int}"
 @page "/posts/{label}"
 
 @if(string.IsNullOrEmpty(Label))
@@ -18,7 +17,6 @@ else
 
 @code {
     [Parameter]
-    public int Page { get; set; }
-    [Parameter]
     public string Label { get; set; }
+    public int Page { get; set; }
 }
